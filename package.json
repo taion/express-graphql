@@ -1,5 +1,5 @@
 {
-  "name": "express-graphql",
+  "name": "@taion/express-graphql",
   "version": "0.5.3",
   "description": "Production ready GraphQL HTTP middleware.",
   "contributors": [
