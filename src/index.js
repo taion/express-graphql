@@ -242,23 +242,32 @@ export default function graphqlHTTP(options: Options): Middleware {
       // If an error was caught, report the httpError status, or 500.
       response.statusCode = error.status || 500;
       return { errors: [ error ] };
-    }).then(result => {
-      // Format any encountered errors.
-      if (result && result.errors) {
-        result.errors = result.errors.map(formatErrorFn || formatError);
+    }).then(results => {
+      function formatResultErrors(result) {
+        if (result && result.errors) {
+          result.errors = result.errors.map(formatErrorFn || formatError);
+        }
       }
+
+      // Format any encountered errors.
+      if (Array.isArray(results)) {
+        results.forEach(formatResultErrors);
+      } else {
+        formatResultErrors(results);
+      }
+
       // If allowed to show GraphiQL, present it instead of JSON.
       if (showGraphiQL) {
         const data = renderGraphiQL({
           query, variables,
-          operationName, result
+          operationName, result: results
         });
         response.setHeader('Content-Type', 'text/html');
         response.write(data);
         response.end();
       } else {
         // Otherwise, present JSON directly.
-        const data = JSON.stringify(result, null, pretty ? 2 : 0);
+        const data = JSON.stringify(results, null, pretty ? 2 : 0);
         response.setHeader('Content-Type', 'application/json');
         response.write(data);
         response.end();
