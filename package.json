@@ -1,6 +1,6 @@
 {
   "name": "@taion/express-graphql",
-  "version": "0.5.4-taion.2",
+  "version": "0.5.4",
   "description": "Production ready GraphQL HTTP middleware.",
   "contributors": [
     "Lee Byron <lee@leebyron.com> (http://leebyron.com/)",
@@ -86,8 +86,7 @@
     "express": "4.13.4",
     "express3": "*",
     "flow-bin": "0.25.0",
-    "graphql": "0.6.0",
-    "http-errors": "1.4.0",
+    "graphql": "0.7.0",
     "isparta": "4.0.0",
     "mocha": "2.5.3",
     "multer": "1.1.0",
@@ -97,6 +96,6 @@
     "supertest-as-promised": "2.0.2"
   },
   "peerDependencies": {
-    "graphql": "^0.5.0-b || ^0.6.0"
+    "graphql": "^0.5.0-b || ^0.6.0 || ^0.7.0"
   }
 }
