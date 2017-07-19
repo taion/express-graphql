@@ -270,6 +270,8 @@ export default function graphqlHTTP(options: Options): Middleware {
         response.setHeader('Content-Type', 'application/json; charset=utf-8');
         response.end(data);
       }
+
+      return results;
     });
   };
 }
